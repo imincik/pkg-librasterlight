@@ -1,0 +1,5 @@
+debian/man/rasterlite_grid.1
+debian/man/rasterlite_load.1
+debian/man/rasterlite_pyramid.1
+debian/man/rasterlite_tool.1
+debian/man/rasterlite_topmost.1

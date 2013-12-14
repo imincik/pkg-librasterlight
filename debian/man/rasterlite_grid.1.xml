@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id='rasterlite_grid'>
+
+  <refmeta>
+    <refentrytitle>rasterlite_grid</refentrytitle>
+    <manvolnum>1</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>rasterlite_grid</refname>
+    <refpurpose>generate a GeoTIFF from am ASCII or BINARY Grid</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv id='synopsis'>
+    <cmdsynopsis>
+      <command>rasterlite_grid</command>
+      <arg choice='opt'><option>-?</option></arg>
+      <arg choice='opt'><option>-g</option> <replaceable>pathname</replaceable></arg>
+      <arg choice='opt'><option>-c</option> <replaceable>pathname</replaceable></arg>
+      <arg choice='opt'><option>-t</option> <replaceable>pathname</replaceable></arg>
+      <arg choice='opt'><option>-p</option> <replaceable>proj4text</replaceable></arg>
+      <arg choice='opt'><option>-f</option>
+        <group>
+          <arg choice='plain'>ASCII</arg>
+          <arg choice='plain'>FLOAT</arg>
+        </group>
+      </arg>
+      <arg choice='opt'><option>-n</option> <replaceable>0xRRGGBB</replaceable></arg>
+      <arg choice='opt'><option>-v</option></arg>
+      <arg choice='opt'><option>-sr</option></arg>
+      <arg choice='opt'><option>-m</option> <replaceable>0xRRGGBB</replaceable></arg>
+      <arg choice='opt'><option>-z</option> <replaceable>numeric</replaceable></arg>
+      <arg choice='opt'><option>-s</option> <replaceable>numeric</replaceable></arg>
+      <arg choice='opt'><option>-az</option> <replaceable>numeric</replaceable></arg>
+      <arg choice='opt'><option>-al</option> <replaceable>numeric</replaceable></arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1 id='description'>
+    <title>DESCRIPTION</title>
+    <para>
+      <command>rasterlite_grid</command> is a tool for generating a GeoTIFF from
+      an ASCII or BINARY Grid.
+    </para>
+  </refsect1>
+
+  <refsect1 id='options'>
+    <title>OPTIONS</title>
+    <variablelist>
+
+      <varlistentry>
+        <term><option>-?</option></term>
+        <term><option>--help</option></term>
+        <listitem>
+          <para>print help message</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-g</option> <replaceable>pathname</replaceable></term>
+        <term><option>--grid-path</option> <replaceable>pathname</replaceable></term>
+        <listitem>
+          <para>the Grid path (input)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-c</option> <replaceable>pathname</replaceable></term>
+        <term><option>--color-path</option> <replaceable>pathname</replaceable></term>
+        <listitem>
+          <para>the ColorTable path (input)</para>
+          <para>
+            Please note: <option>--monochrome</option> and
+            <option>--color-path</option> are mutually exclusive options.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-t</option> <replaceable>pathname</replaceable></term>
+        <term><option>--tiff-path</option> <replaceable>pathname</replaceable></term>
+        <listitem>
+          <para>the GeoTIFF path (output)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-p</option> <replaceable>proj4text</replaceable></term>
+        <term><option>--proj4text</option> <replaceable>proj4text</replaceable></term>
+        <listitem>
+          <para>the PROJ.4 parameters</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-f</option> [ASCII | FLOAT]</term>
+        <term><option>--grid-format</option> [ASCII | FLOAT]</term>
+        <listitem>
+          <para>the grid format, either ASCII or FLOAT</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-n</option> <replaceable>0xRRGGBB</replaceable></term>
+        <term><option>--nodata-color</option> <replaceable>0xRRGGBB</replaceable></term>
+        <listitem>
+          <para>No data color (default = 0x000000)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-v</option></term>
+        <term><option>--verbose</option></term>
+        <listitem>
+          <para>verbose output</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-sr</option></term>
+        <term><option>--shaded-relief</option></term>
+        <listitem>
+          <para>Use shaded relief (disabled by default)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-m</option> <replaceable>0xRRGGBB</replaceable></term>
+        <term><option>--monochrome</option> <replaceable>0xRRGGBB</replaceable></term>
+        <listitem>
+          <para>Monochrome color (default = none)</para>
+          <para>
+            Please note: <option>--monochrome</option> and
+            <option>--color-path</option> are mutually exclusive options.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-z</option> <replaceable>numeric</replaceable></term>
+        <term><option>--z-factor</option> <replaceable>numeric</replaceable></term>
+        <listitem>
+          <para>override the default z-factor (default = 1.0)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-s</option> <replaceable>numeric</replaceable></term>
+        <term><option>--scale-factor</option> <replaceable>numeric</replaceable></term>
+        <listitem>
+          <para>override the default scale factor (default = 1.0)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-az</option> <replaceable>numeric</replaceable></term>
+        <term><option>--azimuth</option> <replaceable>numeric</replaceable></term>
+        <listitem>
+          <para>override the default azimuth (default = 315.0)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-al</option> <replaceable>numeric</replaceable></term>
+        <term><option>--altitude</option> <replaceable>numeric</replaceable></term>
+        <listitem>
+          <para>override the default altitude (default = 45.0)</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </refsect1>
+
+</refentry>

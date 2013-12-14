@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id='rasterlite_tool'>
+
+  <refmeta>
+    <refentrytitle>rasterlite_tool</refentrytitle>
+    <manvolnum>1</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>rasterlite_tool</refname>
+    <refpurpose>generate rasters from a SpatiaLite DB</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv id='synopsis'>
+    <cmdsynopsis>
+      <command>rasterlite_tool</command>
+      <arg choice='opt'><option>-?</option></arg>
+      <arg choice='opt'><option>-o</option> <replaceable>pathname</replaceable></arg>
+      <arg choice='opt'><option>-d</option> <replaceable>pathname</replaceable></arg>
+      <arg choice='opt'><option>-T</option> <replaceable>name</replaceable></arg>
+      <arg choice='opt'><option>-x</option> <replaceable>coordinate</replaceable></arg>
+      <arg choice='opt'><option>-y</option> <replaceable>coordinate</replaceable></arg>
+      <arg choice='opt'><option>-r</option> <replaceable>num</replaceable></arg>
+      <arg choice='opt'><option>-w</option> <replaceable>num</replaceable></arg>
+      <arg choice='opt'><option>-h</option> <replaceable>num</replaceable></arg>
+      <arg choice='opt'><option>-i</option>
+        <group>
+          <arg choice='plain'>JPEG</arg>
+          <arg choice='plain'>GIF</arg>
+          <arg choice='plain'>PNG</arg>
+          <arg choice='plain'>TIFF</arg>
+        </group>
+      </arg>
+      <arg choice='opt'><option>-q</option> <replaceable>num</replaceable></arg>
+      <arg choice='opt'><option>-c</option> <replaceable>0xRRGGBB</replaceable></arg>
+      <arg choice='opt'><option>-b</option> <replaceable>0xRRGGBB</replaceable></arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1 id='description'>
+    <title>DESCRIPTION</title>
+    <para>
+      <command>rasterlite_tool</command> is a tool for generating rasters from
+      a SpatiaLite DB
+    </para>
+  </refsect1>
+
+  <refsect1 id='options'>
+    <title>OPTIONS</title>
+    <variablelist>
+
+      <varlistentry>
+        <term><option>-?</option></term>
+        <term><option>--help</option></term>
+        <listitem>
+          <para>print help message</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-o</option> <replaceable>pathname</replaceable></term>
+        <term><option>--output</option> <replaceable>pathname</replaceable></term>
+        <listitem>
+          <para>the image path</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-d</option> <replaceable>pathname</replaceable></term>
+        <term><option>--db-path</option> <replaceable>pathname</replaceable></term>
+        <listitem>
+          <para>the SpatiaLite db path</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-T</option> <replaceable>name</replaceable></term>
+        <term><option>--table-name</option> <replaceable>name</replaceable></term>
+        <listitem>
+          <para>DB table name</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-x</option> <replaceable>coordinate</replaceable></term>
+        <term><option>--center-x</option> <replaceable>coordinate</replaceable></term>
+        <listitem>
+          <para>center&minus;point X coord</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-y</option> <replaceable>coordinate</replaceable></term>
+        <term><option>--center-y</option> <replaceable>coordinate</replaceable></term>
+        <listitem>
+          <para>center&minus;point Y coord</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-r</option> <replaceable>num</replaceable></term>
+        <term><option>--pixel-ratio</option> <replaceable>num</replaceable></term>
+        <listitem>
+          <para>map-units per pixel</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-w</option> <replaceable>num</replaceable></term>
+        <term><option>--width</option> <replaceable>num</replaceable></term>
+        <listitem>
+          <para>raster width</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-h</option> <replaceable>num</replaceable></term>
+        <term><option>--height</option> <replaceable>num</replaceable></term>
+        <listitem>
+          <para>raster height</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-i</option> [JPEG|GIF|PNG|TIFF]</term>
+        <term><option>--image-type</option> [JPEG|GIF|PNG|TIFF]</term>
+        <listitem>
+          <para>select image type</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-q</option> <replaceable>num</replaceable></term>
+        <term><option>--quality</option> <replaceable>num</replaceable></term>
+        <listitem>
+          <para>override the default quality (default = 75(JPEG))</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-c</option> <replaceable>0xRRGGBB</replaceable></term>
+        <term><option>--transparent-color</option> <replaceable>0xRRGGBB</replaceable></term>
+        <listitem>
+          <para>override the default transparency color (default = NONE)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-b</option> <replaceable>0xRRGGBB</replaceable></term>
+        <term><option>--background-color</option> <replaceable>0xRRGGBB</replaceable></term>
+        <listitem>
+          <para>override the default background color (default = 0x000000)</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </refsect1>
+
+</refentry>

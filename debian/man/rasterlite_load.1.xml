@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id='rasterlite_load'>
+
+  <refmeta>
+    <refentrytitle>rasterlite_load</refentrytitle>
+    <manvolnum>1</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>rasterlite_load</refname>
+    <refpurpose>upload GeoTIFF rasters into a SpatiaLite DB</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv id='synopsis'>
+    <cmdsynopsis>
+      <command>rasterlite_load</command>
+      <arg choice='opt'><option>-?</option></arg>
+      <arg choice='opt'><option>-t</option></arg>
+      <arg choice='opt'><option>-v</option></arg>
+      <arg choice='opt'><option>-d</option> <replaceable>pathname</replaceable></arg>
+      <arg choice='opt'><option>-T</option> <replaceable>name</replaceable></arg>
+      <arg choice='opt'><option>-D</option> <replaceable>dir_path</replaceable></arg>
+      <arg choice='opt'><option>-f</option> <replaceable>file_name</replaceable></arg>
+      <arg choice='opt'><option>-s</option> <replaceable>num</replaceable></arg>
+      <arg choice='opt'><option>-e</option> <replaceable>num</replaceable></arg>
+      <arg choice='opt'><option>-i</option>
+        <group>
+          <arg choice='plain'>JPEG</arg>
+          <arg choice='plain'>PNG</arg>
+          <arg choice='plain'>GIF</arg>
+          <arg choice='plain'>TIFF</arg>
+        </group>
+      </arg>
+      <arg choice='opt'><option>-q</option> <replaceable>num</replaceable></arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1 id='description'>
+    <title>DESCRIPTION</title>
+    <para>
+      <command>rasterlite_load</command> is a tool for uploading GeoTIFF
+      rasters into a SpatiaLite DB.
+    </para>
+  </refsect1>
+
+  <refsect1 id='options'>
+    <title>OPTIONS</title>
+    <variablelist>
+
+      <varlistentry>
+        <term><option>-?</option></term>
+        <term><option>--help</option></term>
+        <listitem>
+          <para>print help message</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-t</option></term>
+        <term><option>--test</option></term>
+        <listitem>
+          <para>test only &minus; no actual action</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-v</option></term>
+        <term><option>--verbose</option></term>
+        <listitem>
+          <para>verbose output</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-d</option> <replaceable>pathname</replaceable></term>
+        <term><option>--db-path</option> <replaceable>pathname</replaceable></term>
+        <listitem>
+          <para>the SpatiaLite db path</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-T</option> <replaceable>name</replaceable></term>
+        <term><option>--table-name</option> <replaceable>name</replaceable></term>
+        <listitem>
+          <para>DB table name</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-D</option> <replaceable>dir_path</replaceable></term>
+        <term><option>--dir</option> <replaceable>dir_path</replaceable></term>
+        <listitem>
+          <para>the DIR path containing GeoTIFF files</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-f</option> <replaceable>file_name</replaceable></term>
+        <term><option>--file</option> <replaceable>file_name</replaceable></term>
+        <listitem>
+          <para>a single GeoTIFF file</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-s</option> <replaceable>num</replaceable></term>
+        <term><option>--tile-size</option> <replaceable>num</replaceable></term>
+        <listitem>
+          <para>override the default tile size (default = 512)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-e</option> <replaceable>num</replaceable></term>
+        <term><option>--epsg-code</option> <replaceable>num</replaceable></term>
+        <listitem>
+          <para>set the optional EPSG code</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-i</option> [JPEG|PNG|GIF|TIFF]</term>
+        <term><option>--image-type</option> [JPEG|PNG|GIF|TIFF]</term>
+        <listitem>
+          <para>select image type</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-q</option> <replaceable>num</replaceable></term>
+        <term><option>--quality</option> <replaceable>num</replaceable></term>
+        <listitem>
+          <para>override the default quality (default = 75(JPEG))</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </refsect1>
+
+</refentry>

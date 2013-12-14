@@ -1,0 +1,77 @@
+From: David Paleino <dapal@debian.org>
+Subject: fix compile- and link-time issues
+Forwarded: no
+
+---
+ Makefile.am     |    2 +-
+ configure.ac    |    4 ++--
+ lib/Makefile.am |    4 +++-
+ src/Makefile.am |    5 ++++-
+ 4 files changed, 10 insertions(+), 5 deletions(-)
+
+--- a/lib/Makefile.am
++++ b/lib/Makefile.am
+@@ -3,6 +3,8 @@ AM_CFLAGS = $(GCOV_FLAGS)
+ 
+ INCLUDES = @CFLAGS@
+ INCLUDES += -I$(top_srcdir)/headers
++INCLUDES += -I/usr/include/
++INCLUDES += -I/usr/include/geotiff/
+ 
+ lib_LTLIBRARIES = librasterlite.la 
+ 
+@@ -21,6 +23,6 @@ librasterlite_la_SOURCES = \
+ librasterlite_la_LDFLAGS = -version-info 2:0:0 -no-undefined
+ 
+ librasterlite_la_LIBADD = @LIBSPATIALITE_LIBS@ @LIBPNG_LIBS@ \
+-	-lgeotiff -ltiff -ljpeg -lspatialite -lproj
++	-lgeotiff -ltiff -ljpeg -lspatialite -lsqlite3
+ 
+ MOSTLYCLEANFILES = *.gcna *.gcno *.gcda
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -7,6 +7,8 @@ bin_PROGRAMS =rasterlite_load \
+ 
+ INCLUDES = @CFLAGS@
+ INCLUDES += -I$(top_srcdir)/headers
++INCLUDES += -I/usr/include/
++INCLUDES += -I/usr/include/geotiff/
+ 
+ rasterlite_load_SOURCES = rasterlite_load.c
+ rasterlite_pyramid_SOURCES = rasterlite_pyramid.c
+@@ -16,6 +18,7 @@ rasterlite_tool_SOURCES = rasterlite_too
+ 
+ LDADD = ../lib/.libs/librasterlite.a \
+ 	@LIBSPATIALITE_LIBS@ @LIBPNG_LIBS@ \
+-        -lgeotiff -ltiff -ljpeg -lspatialite -lproj
++        -lsqlite3 -lm \
++        -lgeotiff -ltiff -lspatialite
+ 
+ MOSTLYCLEANFILES = *.gcna *.gcno *.gcda
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -2,7 +2,7 @@ ACLOCAL_AMFLAGS = -I m4
+ 
+ SUBDIRS = headers lib src test
+ 
+-AUTOMAKE_OPTIONS = dist-zip
++AUTOMAKE_OPTIONS = dist-zip foreign
+ 
+ EXTRA_DIST = Makefile-static-MinGW Makefile-static-Linux \
+ 	Makefile-static-MacOsX makefile.vc nmake.opt 
+--- a/configure.ac
++++ b/configure.ac
+@@ -79,11 +79,11 @@ AC_CHECK_LIB(tiff,TIFFClientOpen,,AC_MSG
+ AC_CHECK_LIB(proj,pj_init_plus,,AC_MSG_ERROR(['libproj' is required but it doesn't seem to be installed on this system.]),-lm)
+ AC_CHECK_LIB(geotiff,GTIFSetFromProj4,,AC_MSG_ERROR(['libgeotiff' [>= v.1.2.5] is required but it doesn't seem to be installed on this system.]),-lm)
+ 
+-PKG_CHECK_MODULES([LIBSPATIALITE], [spatialite], , AC_MSG_ERROR(['libspatialite' is required but it doesn't seem to be installed on this system.]))
++PKG_CHECK_MODULES([LIBSPATIALITE], [spatialite], [], AC_MSG_ERROR(['libspatialite' is required but it doesn't seem to be installed on this system.]))
+ AC_SUBST(LIBSPATIALITE_CFLAGS)
+ AC_SUBST(LIBSPATIALITE_LIBS)
+ 
+-PKG_CHECK_MODULES([LIBPNG], [libpng], , AC_MSG_ERROR(['libpng' is required but it doesn't seem to be installed on this system.]))
++PKG_CHECK_MODULES([LIBPNG], [libpng], [], AC_MSG_ERROR(['libpng' is required but it doesn't seem to be installed on this system.]))
+ AC_SUBST(LIBPNG_CFLAGS)
+ AC_SUBST(LIBPNG_LIBS)
+ 

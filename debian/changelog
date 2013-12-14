@@ -1,0 +1,98 @@
+librasterlite (1.1g-3) experimental; urgency=low
+
+  * Bump Standards-Version to 3.9.5, no changes required.
+  * Require at least libspatialite version 4.1.1.
+
+ -- Bas Couwenberg <sebastic@xs4all.nl>  Sat, 14 Dec 2013 16:45:27 +0100
+
+librasterlite (1.1g-2) experimental; urgency=low
+
+  * Change priority to optional, keep priority extra for -dbg package.
+
+ -- Bas Couwenberg <sebastic@xs4all.nl>  Fri, 22 Nov 2013 03:11:09 +0100
+
+librasterlite (1.1g-1) experimental; urgency=low
+
+  * New upstream version.
+  * Add myself to Uploaders.
+  * Update watch file, incorporate sepwatch changes and handle common mistakes.
+  * Refresh patches.
+  * Drop 03-fix_library_version.patch, applied upstream.
+  * Build depend on libtiff-dev and libpng-dev directly, not as alternatives.
+    (closes: 662410)
+  * Use canonical URLs for Vcs-* fields.
+  * Update Homepage URL.
+  * Multi-Arch: same rasterlite-dbg for coinstallability.
+  * Add man page for tools:
+    - rasterlite_grid
+    - rasterlite_load
+    - rasterlite_pyramid
+    - rasterlite_tool
+    - rasterlite_topmost
+  * Update copyright file.
+  * Require at least libspatiatlite-dev 3.0.2~20120302. (closes: #725271)
+  * Drop libepsilon-dev build dependency, no longer supported since 1.1a.
+
+ -- Bas Couwenberg <sebastic@xs4all.nl>  Tue, 01 Oct 2013 22:27:37 +0200
+
+librasterlite (1.1d-1) experimental; urgency=low
+
+  * New upstream version.
+  * Updated debian/watch.
+  * Dropped 00-systemwide_libepsilon.patch: libepsilon isn't anymore
+    embedded.
+  * Add 'foreign' to automake options.
+  * Standards-Version bump to 3.9.4, no changes needed.
+  * SONAME bump: librasterlite1 → librasterlite2. Wavelet-related
+    functions have been dropped.
+  * debian/copyright: drop references to epsilon/*, since it's not
+    present anymore in the source tree.
+
+ -- David Paleino <dapal@debian.org>  Sun, 02 Dec 2012 11:46:13 +0100
+
+librasterlite (1.1~svn11-2) unstable; urgency=low
+
+  [ Francesco Paolo Lovergine ]
+  * Added me as an Uploader.
+  * Now build-depending on TIFF 5.0 due to new GeoTiff.
+    (closes: #665032)
+  * Policy bumped to 3.9.3. No changes.
+  * Debhelper level set to 9.
+  * Due to multi-arch support, target libs changed destination
+    after re-autoconfiscation.
+
+  [ David Paleino ]
+  * Updated debian/copyright
+
+ -- David Paleino <dapal@debian.org>  Sun, 22 Apr 2012 21:16:06 +0200
+
+librasterlite (1.1~svn11-1) unstable; urgency=low
+
+  [ David Paleino ]
+  * New SVN snapshot
+    - this is needed by Mapnik2
+  * Fixed licensing information: the code is now under LGPL-3+
+  * 03-libepsilon_transition.patch removed, fixed upstream
+  * 03-fix_library_version.patch added: fix SONAME
+  * Symbols file updated
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Thu, 22 Mar 2012 14:53:17 +0100
+
+librasterlite (1.0-3) unstable; urgency=low
+
+  * Fix code to use newer libepsilon (Closes: #628275)
+  * Standards-Version bump to 3.9.2, no changes needed
+
+ -- David Paleino <dapal@debian.org>  Mon, 30 May 2011 19:12:45 +0200
+
+librasterlite (1.0-2) unstable; urgency=low
+
+  * Build-Depend on libtiff4-dev | libtiff-dev
+
+ -- David Paleino <dapal@debian.org>  Mon, 24 Jan 2011 22:53:57 +0100
+
+librasterlite (1.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #610982)
+
+ -- David Paleino <dapal@debian.org>  Mon, 24 Jan 2011 18:39:20 +0100

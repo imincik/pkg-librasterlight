@@ -1,0 +1,32 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+MANPAGES := $(wildcard debian/man/*.*.xml)
+
+%:
+	dh $@ \
+		--with autoreconf
+
+override_dh_clean:
+	dh_clean
+
+	$(RM) -f $(CURDIR)/debian/man/*.1
+
+override_dh_auto_build:
+	# Create man page from DocBook XML
+	for x in $(MANPAGES) ; do \
+	    docbook2x-man $$x ; \
+	    mv `basename $$x | sed 's/.xml$$//'` `dirname $$x` ; \
+	done
+
+	dh_auto_build
+
+override_dh_strip:
+	dh_strip --dbg-package=rasterlite-dbg
+
+override_dh_auto_test:
+	# Temporarily disable build-time tests, due to missing .jpg referenced
+	# from the testsuite. Already wrote to upstream about this.

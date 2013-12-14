@@ -1,0 +1,80 @@
+Source: librasterlite
+Maintainer: Debian GIS Project <pkg-grass-devel@lists.alioth.debian.org>
+Uploaders: David Paleino <dapal@debian.org>,
+           Francesco Paolo Lovergine <frankie@debian.org>,
+           Bas Couwenberg <sebastic@xs4all.nl>
+Section: libs
+Priority: optional
+Build-Depends: debhelper (>= 9~),
+               dh-autoreconf,
+               libtiff-dev,
+               libgeotiff-dev,
+               libjpeg-dev,
+               zlib1g-dev,
+               libpng-dev,
+               libspatialite-dev (>= 4.1.1~),
+               libproj-dev,
+               libsqlite3-dev,
+               pkg-config,
+               docbook2x,
+               docbook-xsl,
+               docbook-xml,
+               xsltproc
+Standards-Version: 3.9.5
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-grass/librasterlite.git
+Vcs-Git: git://anonscm.debian.org/pkg-grass/librasterlite.git
+Homepage: https://www.gaia-gis.it/fossil/librasterlite/
+
+Package: librasterlite-dev
+Architecture: any
+Multi-Arch: same
+Section: libdevel
+Depends: ${misc:Depends},
+         librasterlite2 (= ${binary:Version})
+Pre-Depends: ${misc:Pre-Depends}
+Description: library supporting raster data sources for spatialite - headers
+ librasterlite is a library supporting raster data sources within a SpatiaLite
+ DataBase, and any releated command-line management tool.
+ .
+ This package contains development files.
+
+Package: librasterlite2
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Pre-Depends: ${misc:Pre-Depends}
+Description: library supporting raster data sources for spatialite
+ librasterlite is a library supporting raster data sources within a SpatiaLite
+ DataBase, and any releated command-line management tool.
+ .
+ This package contains the shared library.
+
+Package: rasterlite-dbg
+Architecture: any
+Multi-Arch: same
+Section: debug
+Priority: extra
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         librasterlite2 (= ${binary:Version}),
+         rasterlite-bin (= ${binary:Version})
+Description: library supporting raster data sources for spatialite - debugging symbols
+ librasterlite is a library supporting raster data sources within a SpatiaLite
+ DataBase, and any releated command-line management tool.
+ .
+ This package contains debugging symbols for librasterlite and rasterlite-bin.
+
+Package: rasterlite-bin
+Architecture: any
+Multi-Arch: foreign
+Section: graphics
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         librasterlite2 (= ${binary:Version})
+Description: command line tools for librasterlite
+ librasterlite is a library supporting raster data sources within a SpatiaLite
+ DataBase, and any releated command-line management tool.
+ .
+ This package contains command-line tools to use librasterlite.
+
