@@ -1,0 +1,122 @@
+# $Id: makefile.vc 2009/11/18 Sandro Furieri $
+#
+# NMAKE Makefile to build librasterlite on Windows
+#
+!INCLUDE nmake.opt
+
+OBJ_EXT = obj
+EXT = $(OBJ_EXT)
+
+LIBOBJ = lib\rasterlite.$(EXT) lib\rasterlite_gif.$(EXT) \
+	lib\rasterlite_png.$(EXT) lib\rasterlite_jpeg.$(EXT) \
+	lib\rasterlite_io.$(EXT) lib\rasterlite_image.$(EXT) \
+	lib\rasterlite_tiff.$(EXT) lib\rasterlite_aux.$(EXT) \
+	lib\rasterlite_quantize.$(EXT)
+RASTERLITE_DLL 	       =	rasterlite$(VERSION).dll
+
+CFLAGS	=	/nologo -IC:\OSGeo4W\include -I.\headers $(OPTFLAGS)
+
+CFLAGS2	=	/nologo -IC:\OSGeo4W\include -I.\headers $(OPTFLAGS2)
+
+default:	all
+
+all: rasterlite.lib rasterlite_i.lib rasterlite_grid.exe rasterlite_load.exe \
+	rasterlite_pyramid.exe rasterlite_tool.exe rasterlite_topmost.exe
+
+rasterlite.lib:	$(LIBOBJ)
+	if exist rasterlite.lib del rasterlite.lib
+	lib /out:rasterlite.lib $(LIBOBJ)
+
+$(RASTERLITE_DLL):	rasterlite_i.lib
+
+rasterlite_i.lib:	$(LIBOBJ)
+	link /debug /dll /out:$(RASTERLITE_DLL) \
+		/implib:rasterlite_i.lib $(LIBOBJ) \
+		C:\OSGeo4W\lib\jpeg_i.lib C:\OSGeo4W\lib\libtiff_i.lib \
+		C:\OSGeo4W\lib\libpng13.lib C:\OSGeo4W\lib\zlib.lib \
+		C:\OSGeo4W\lib\geotiff_i.lib C:\OSGeo4W\lib\spatialite_i.lib
+	if exist $(RASTERLITE_DLL).manifest mt -manifest \
+		$(RASTERLITE_DLL).manifest -outputresource:$(RASTERLITE_DLL);2
+
+rasterlite_grid.exe: $(LIBOBJ) src\rasterlite_grid.obj
+	cl src\rasterlite_grid.obj .\rasterlite.lib \
+	C:\OSGeo4W\lib\jpeg_i.lib C:\OSGeo4W\lib\libtiff_i.lib \
+	C:\OSGeo4W\lib\libpng13.lib C:\OSGeo4W\lib\zlib.lib \
+	C:\OSGeo4W\lib\geotiff_i.lib C:\OSGeo4W\lib\spatialite_i.lib
+
+rasterlite_load.exe: $(LIBOBJ) src\rasterlite_load.obj
+	cl src\rasterlite_load.obj .\rasterlite.lib \
+	C:\OSGeo4W\lib\jpeg_i.lib C:\OSGeo4W\lib\libtiff_i.lib \
+	C:\OSGeo4W\lib\libpng13.lib C:\OSGeo4W\lib\zlib.lib \
+	C:\OSGeo4W\lib\geotiff_i.lib C:\OSGeo4W\lib\spatialite_i.lib
+
+rasterlite_pyramid.exe: $(LIBOBJ) src\rasterlite_pyramid.obj
+	cl src\rasterlite_pyramid.obj .\rasterlite.lib \
+	C:\OSGeo4W\lib\jpeg_i.lib C:\OSGeo4W\lib\libtiff_i.lib \
+	C:\OSGeo4W\lib\libpng13.lib C:\OSGeo4W\lib\zlib.lib \
+	C:\OSGeo4W\lib\geotiff_i.lib C:\OSGeo4W\lib\spatialite_i.lib
+
+rasterlite_tool.exe: $(LIBOBJ) src\rasterlite_tool.obj
+	cl src\rasterlite_tool.obj .\rasterlite.lib \
+	C:\OSGeo4W\lib\jpeg_i.lib C:\OSGeo4W\lib\libtiff_i.lib \
+	C:\OSGeo4W\lib\libpng13.lib C:\OSGeo4W\lib\zlib.lib \
+	C:\OSGeo4W\lib\geotiff_i.lib C:\OSGeo4W\lib\spatialite_i.lib
+	
+rasterlite_topmost.exe: $(LIBOBJ) src\rasterlite_topmost.obj
+	cl src\rasterlite_topmost.obj .\rasterlite.lib \
+	C:\OSGeo4W\lib\jpeg_i.lib C:\OSGeo4W\lib\libtiff_i.lib \
+	C:\OSGeo4W\lib\libpng13.lib C:\OSGeo4W\lib\zlib.lib \
+	C:\OSGeo4W\lib\geotiff_i.lib C:\OSGeo4W\lib\spatialite_i.lib
+		
+lib\rasterlite.$(EXT): lib\rasterlite.c
+	$(CC) $(CFLAGS2) /c lib\rasterlite.c /Fo$@
+	
+lib\rasterlite_gif.$(EXT): lib\rasterlite_gif.c
+	$(CC) $(CFLAGS2) /c lib\rasterlite_gif.c /Fo$@
+	
+lib\rasterlite_png.$(EXT): lib\rasterlite_png.c
+	$(CC) $(CFLAGS2) /c lib\rasterlite_png.c /Fo$@
+	
+lib\rasterlite_jpeg.$(EXT): lib\rasterlite_jpeg.c
+	$(CC) $(CFLAGS2) /c lib\rasterlite_jpeg.c /Fo$@
+
+lib\rasterlite_io.$(EXT): lib\rasterlite_io.c
+	$(CC) $(CFLAGS2) /c lib\rasterlite_io.c /Fo$@
+	
+lib\rasterlite_image.$(EXT): lib\rasterlite_image.c
+	$(CC) $(CFLAGS2) /c lib\rasterlite_image.c /Fo$@
+	
+lib\rasterlite_aux.$(EXT): lib\rasterlite_aux.c
+	$(CC) $(CFLAGS2) /c lib\rasterlite_aux.c /Fo$@
+	
+lib\rasterlite_tiff.$(EXT): lib\rasterlite_tiff.c
+	$(CC) $(CFLAGS2) /c lib\rasterlite_tiff.c /Fo$@
+	
+lib\rasterlite_quantize.$(EXT): lib\rasterlite_quantize.c
+	$(CC) $(CFLAGS2) /c lib\rasterlite_quantize.c /Fo$@
+	
+	
+.c.obj:
+	$(CC) $(CFLAGS) /c $*.c /Fo$@
+
+clean:
+	del *.dll
+	del *.exp
+	del *.manifest
+	del *.lib
+	del lib\*.obj
+	del epsilon\*.obj
+	del src\*.obj
+	del *.exe
+	del *.pdb
+
+install: all
+	-mkdir $(INSTDIR)
+	-mkdir $(INSTDIR)\bin
+	-mkdir $(INSTDIR)\lib
+	-mkdir $(INSTDIR)\include
+	copy *.dll $(INSTDIR)\bin
+	copy *.lib $(INSTDIR)\lib
+	copy *.exe $(INSTDIR)\bin
+	copy headers\rasterlite.h $(INSTDIR)\include
+	

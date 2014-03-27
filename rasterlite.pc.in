@@ -1,0 +1,12 @@
+# Package Information for pkg-config
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: rasterlite
+Description: Raster Data Source based on SQLite+SpatiaLite
+Version: 1.0
+Libs: -L${libdir} -lrasterlite
+Cflags: -I${includedir}

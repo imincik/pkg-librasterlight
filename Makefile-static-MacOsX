@@ -1,0 +1,67 @@
+# SandroFurieri (c) 2009
+# Makefile RasterLite statically linked tools [MacOsX]
+
+all: ./static_bin/rasterlite_load ./static_bin/rasterlite_pyramid \
+	./static_bin/rasterlite_topmost ./static_bin/rasterlite_tool \
+	./static_bin/rasterlite_grid
+
+./static_bin/rasterlite_load: ./src/rasterlite_load.o
+	$(CC) ./src/rasterlite_load.o -o ./static_bin/rasterlite_load \
+	./lib/.libs/librasterlite.a \
+	/usr/local/lib/libgeotiff.a \
+	/usr/local/lib/libtiff.a \
+	/usr/local/lib/libjpeg.a \
+	/usr/local/lib/libpng.a \
+	/usr/local/lib/libspatialite.a \
+	/usr/local/lib/libproj.a \
+	/usr/local/lib/libgeos_c.a \
+	/usr/local/lib/libgeos.a -lz -liconv -lstdc++ -lm -lpthread -ldl
+	strip ./static_bin/rasterlite_load
+
+./static_bin/rasterlite_pyramid: ./src/rasterlite_pyramid.o
+	$(CC) ./src/rasterlite_pyramid.o -o ./static_bin/rasterlite_pyramid \
+	./lib/.libs/librasterlite.a \
+	/usr/local/lib/libgeotiff.a \
+	/usr/local/lib/libtiff.a \
+	/usr/local/lib/libjpeg.a \
+	/usr/local/lib/libpng.a \
+	/usr/local/lib/libspatialite.a \
+	/usr/local/lib/libproj.a \
+	/usr/local/lib/libgeos_c.a \
+	/usr/local/lib/libgeos.a -lz -liconv -lstdc++ -lm -lpthread -ldl
+	strip ./static_bin/rasterlite_pyramid
+
+./static_bin/rasterlite_topmost: ./src/rasterlite_topmost.o
+	$(CC) ./src/rasterlite_topmost.o -o ./static_bin/rasterlite_topmost \
+	./lib/.libs/librasterlite.a \
+	/usr/local/lib/libgeotiff.a \
+	/usr/local/lib/libtiff.a \
+	/usr/local/lib/libjpeg.a \
+	/usr/local/lib/libpng.a \
+	/usr/local/lib/libspatialite.a \
+	/usr/local/lib/libproj.a \
+	/usr/local/lib/libgeos_c.a \
+	/usr/local/lib/libgeos.a -lz -liconv -lstdc++ -lm -lpthread -ldl
+	strip ./static_bin/rasterlite_topmost
+
+./static_bin/rasterlite_tool: ./src/rasterlite_tool.o
+	$(CC) ./src/rasterlite_tool.o -o ./static_bin/rasterlite_tool \
+	./lib/.libs/librasterlite.a \
+	/usr/local/lib/libgeotiff.a \
+	/usr/local/lib/libtiff.a \
+	/usr/local/lib/libjpeg.a \
+	/usr/local/lib/libpng.a \
+	/usr/local/lib/libspatialite.a \
+	/usr/local/lib/libproj.a \
+	/usr/local/lib/libgeos_c.a \
+	/usr/local/lib/libgeos.a -lz -liconv -lstdc++ -lm -lpthread -ldl
+	strip ./static_bin/rasterlite_tool
+
+./static_bin/rasterlite_grid: ./src/rasterlite_grid.o
+	$(CC) ./src/rasterlite_grid.o -o ./static_bin/rasterlite_grid \
+	/usr/local/lib/libgeotiff.a \
+	/usr/local/lib/libtiff.a \
+	/usr/local/lib/libproj.a \
+	/usr/local/lib/libjpeg.a \
+	-lz -lm
+	strip ./static_bin/rasterlite_grid
