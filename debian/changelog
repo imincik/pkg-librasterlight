@@ -1,3 +1,9 @@
+librasterlite (1.1g-3~precise1) precise; urgency=low
+
+  * Rebuild on Precise. 
+
+ -- Ivan Mincik <ivan.mincik@gmail.com>  Thu, 27 Mar 2014 13:05:54 +0100
+
 librasterlite (1.1g-3) experimental; urgency=low
 
   * Bump Standards-Version to 3.9.5, no changes required.
